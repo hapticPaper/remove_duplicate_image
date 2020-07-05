@@ -9,7 +9,7 @@ Original file is located at
 
 # Commented out IPython magic to ensure Python compatibility.
 import hashlib
-from scipy.misc import imread, imresize, imshow
+from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 # %matplotlib inline
@@ -26,7 +26,7 @@ import os
 
 os.getcwd()
 
-os.chdir(r'D:\images')
+os.chdir(os.path.join("U:", "Users","ian","Pictures"))
 os.getcwd()
 
 file_list = os.listdir()
@@ -44,15 +44,15 @@ for index, filename in  enumerate(os.listdir('.')):  #listdir('.') = current dir
         else:
             duplicates.append((index,hash_keys[filehash]))
 
-duplicates
+print(duplicates)
 
 for file_indexes in duplicates[:30]:
     try:
     
-        plt.subplot(121),plt.imshow(imread(file_list[file_indexes[1]]))
+        plt.subplot(121),plt.imshow(Image.open(file_list[file_indexes[1]]))
         plt.title(file_indexes[1]), plt.xticks([]), plt.yticks([])
 
-        plt.subplot(122),plt.imshow(imread(file_list[file_indexes[0]]))
+        plt.subplot(122),plt.imshow(Image.open(file_list[file_indexes[0]]))
         plt.title(str(file_indexes[0]) + ' duplicate'), plt.xticks([]), plt.yticks([])
         plt.show()
     
